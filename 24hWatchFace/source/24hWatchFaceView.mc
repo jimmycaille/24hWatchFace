@@ -31,8 +31,8 @@ class hWatchFaceView extends WatchUi.WatchFace {
 		var m = clockTime.min;
 		var s = clockTime.sec;
 		
-		//update only each minute
-		if(s == 0 || !isAlreadySeen){
+		//update only every two minutes
+		if(s == 0 && m%2==0 || !isAlreadySeen){
 			isAlreadySeen = true;
 	
 	        // Call the parent onUpdate function to redraw the layout

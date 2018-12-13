@@ -31,8 +31,8 @@ class hWatchFaceView extends WatchUi.WatchFace {
 		var m = clockTime.min;
 		var s = clockTime.sec;
 		
-		//update only each minute
-		if(s == 0 || !isAlreadySeen){
+		//update every two minutes
+		if((s == 0 && m%2==0) || !isAlreadySeen){
 			isAlreadySeen = true;
 	
 	        // Call the parent onUpdate function to redraw the layout
@@ -47,14 +47,14 @@ class hWatchFaceView extends WatchUi.WatchFace {
 				var ticWidth;
 				if(i.toNumber()%15==0){
 					//hour
-					ticCircle1 = 100;
-					ticCircle2 = 88;
+					ticCircle1 = 120; //100-88
+					ticCircle2 = 108;
 					ticWidth  = 3;
 					//dc.setColor(Application.getApp().getProperty("BigTicksColor"),Application.getApp().getProperty("BigTicksColor"));
 				}else{
 					//quarter
-					ticCircle1 = 100;
-					ticCircle2 = 88;
+					ticCircle1 = 120;
+					ticCircle2 = 108;
 					ticWidth  = 1;
 					//dc.setColor(Application.getApp().getProperty("SmallTicksColor"),Application.getApp().getProperty("SmallTicksColor"));
 				}
@@ -66,7 +66,7 @@ class hWatchFaceView extends WatchUi.WatchFace {
 				dc.drawLine(innerPointx, innerPointy, outerPointx, outerPointy);
 				
 				if(i.toNumber()%15==0){
-					var nbCirc = 112;
+					var nbCirc = 96;//112
 					var nbPtx = c + nbCirc * Math.sin(Math.toRadians(i));
 					var nbPty = c + nbCirc * Math.cos(Math.toRadians(i));
 					dc.drawText(nbPtx, nbPty, dc.FONT_XTINY, (24-(i/15).toNumber()+12)%24, dc.TEXT_JUSTIFY_CENTER|dc.TEXT_JUSTIFY_VCENTER);
@@ -74,7 +74,7 @@ class hWatchFaceView extends WatchUi.WatchFace {
 			}
 			
 			
-			var hrCircle   = 100; //74
+			var hrCircle   = 120; //100
 			var hrCircle2  = 19;
 			var hrDeg      = 10;
 			
